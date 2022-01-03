@@ -2,7 +2,6 @@ import Card, { ICardConfig, ICardInfo } from '../../src/lib/Card';
 import DiscardPile from '../../src/lib/DiscardPile';
 import { Faces } from '../../src/lib/faces';
 import { Suits } from '../../src/lib/suits';
-
 describe('Discard Pile Class', () => {
 	test('Discard Pile Should Exist', () => {
 		expect(DiscardPile).toBeDefined();
