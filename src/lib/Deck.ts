@@ -29,4 +29,24 @@ export default class Deck {
 		
 		return cards
 	}
+	public get topCard() : Card {
+			const card = this.cards[0]
+			return card
+	}
+	public get length() : number {
+		return this.cards.length
+	}
+	public removeTopCard() : void {
+		this.cards.shift()
+	}
+	public addCard(card: Card) : void {
+		this.cards.push(card);
+	}
+	public shuffle() : Card[] {
+		for (let i = this.cards.length -1; i> 0; i--) {
+			let j = Math.floor(Math.random() * (i +1));
+			[this.cards[i], this.cards[j]] = [this.cards[j], this.cards[i]];
+		}
+		return this.cards
+	}
 }
