@@ -1,4 +1,10 @@
-import Card, { Faces, ICardConfig, Suits, Values } from '../../src/lib/Card';
+
+import {Suits} from '../../src/lib/suits';
+
+import {Faces} from '../../src/lib/faces';
+import Card from '../../src/lib/Card';
+import { ICardConfig, ICardInfo } from '../../src/lib/Card';
+import {Values} from '../../src/lib/values'
 
 describe('Card Class', () => {
 	test('Card Class Should Exist', () => {
@@ -25,7 +31,7 @@ describe('Card Class', () => {
 		describe('cardInfo Getter', () => {
 			describe('With Reveal Method', () => {
 				newCard.reveal()
-				const cardInfo = newCard.cardInfo
+				const cardInfo: Partial<ICardInfo> = newCard.cardInfo
 				test('newCard.cardInfo should return an object with a face property with the value matching Faces.TWO', () => {
 					expect(cardInfo).toHaveProperty('face', Faces.TWO);
 				})
@@ -38,7 +44,7 @@ describe('Card Class', () => {
 			})
 			describe('With Hide Method', () => {
 				newCard.hide()
-				const cardInfo = newCard.cardInfo;
+				const cardInfo: Partial<ICardInfo> = newCard.cardInfo;
 				test('cardInfo Should Return An Object With Only A Hidden Property, Set To True, and No Other Properties', () => {
 					expect(cardInfo).toHaveProperty('hidden', true);
 					expect(cardInfo).not.toHaveProperty('suit');

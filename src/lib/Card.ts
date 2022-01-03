@@ -1,51 +1,13 @@
-type Suit = 'Hearts' | 'Spades' | 'Diamonds' | 'Clubs'
-export enum Suits {
-	HEARTS = 'Hearts',
-	SPADES = 'Spades',
-	DIAMONDS = 'Diamonds',
-	CLUBS = 'Clubs'
-}
+import { Suit } from './suits';
+import { Face, Faces } from './faces';
+import { Value, Values } from './values';
 
-type Face = 'Ace' | 'King' | 'Queen' | 'Jack' | 10 | 9 | 8 | 7 | 6 | 5 | 4 | 3 | 2;
-
-export enum Faces {
-	ACE = 'Ace',
-	KING = 'King',
-	QUEEN = 'Queen',
-	JACK = 'Jack',
-	TEN = 10,
-	NINE = 9,
-	EIGHT = 8,
-	SEVEN = 7,
-	SIX = 6,
-	FIVE = 5,
-	FOUR = 4,
-	THREE = 3,
-	TWO = 2
-}
-
-type Value = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13
-export enum Values {
-	ACE = 1,
-	TWO,
-	THREE,
-	FOUR,
-	FIVE,
-	SIX,
-	SEVEN,
-	EIGHT,
-	NINE,
-	TEN,
-	JACK,
-	QUEEN,
-	KING
-}
 export interface ICardConfig {
 	suit: Suit;
 	face: Face;
 }
 
-interface ICardInfo extends ICardConfig {
+export interface ICardInfo extends ICardConfig {
 	value: Value;
 	hidden: boolean
 }
