@@ -44,14 +44,21 @@ export interface ICardConfig {
 	suit: Suit;
 	face: Face;
 }
+
+interface ICardInfo extends ICardConfig {
+	value: Value;
+	hidden: boolean
+}
 export default class Card {
-	private suit: Suit
-	private face: Face
-	private value: Value
+	private _suit: Suit
+	private _face: Face
+	private _value: Value
+	private isRevealed: boolean
 	constructor(suit: Suit, face: Face, value: Value) {
-		this.suit = suit,
-		this.face = face,
-		this.value = value
+		this._suit = suit,
+		this._face = face,
+		this._value = value
+		this.isRevealed = false
 	}
 
 	private static FACES = Faces
@@ -108,5 +115,52 @@ export default class Card {
 	public static Config(cardConfig: ICardConfig): Card {
 		const value = this.generateCardValue(cardConfig.face)
 		return new Card(cardConfig.suit, cardConfig.face, value);
+	}
+
+	private get value() : Value {
+		return this._value
+	}
+
+	private get suit() : Suit {
+		return this._suit
+	}
+
+	private set revealed(value: boolean) {
+		this.isRevealed = value;
+	}
+
+	private get revealed() : boolean {
+		return this.isRevealed
+	}
+	public reveal() : void {
+		this.revealed = true
+	}
+
+	public hide() : void {
+		this.revealed = false
+	}
+	private get face() : Face {
+		return this._face
+	}
+
+	public get cardInfo() : Partial<ICardInfo> {
+		if(this.revealed) {
+			const suit = this.suit;
+			const face = this.face;
+			const value = this.value;
+			const cardInfo: Partial<ICardInfo> = {
+				suit: suit,
+				face: face,
+				value: value
+			}
+			return cardInfo
+		} else {
+			const cardInfo : Partial<ICardInfo> = {
+				hidden: true
+			}
+			return cardInfo
+		}
+	
+		
 	}
 }
